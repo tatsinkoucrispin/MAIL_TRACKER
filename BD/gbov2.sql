@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 03 mars 2024 à 10:20
+-- Généré le : mar. 05 mars 2024 à 17:51
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -48,8 +48,18 @@ CREATE TABLE IF NOT EXISTS `courrier_arrivee` (
   `OBJET_ARRIVEE` varchar(255) DEFAULT NULL,
   `DATE_ARRIVEE` date DEFAULT NULL,
   `PIECE_JOINTE_ARRIVEE` varchar(255) DEFAULT NULL,
+  `REPONSE` text,
   PRIMARY KEY (`N_ARRIVEE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `courrier_arrivee`
+--
+
+INSERT INTO `courrier_arrivee` (`N_ARRIVEE`, `ANNEE`, `OBJET_ARRIVEE`, `DATE_ARRIVEE`, `PIECE_JOINTE_ARRIVEE`, `REPONSE`) VALUES
+(1, 2024, 'Objet Courrier Arrivée 1', '2024-02-15', 'Piece Jointe 1', NULL),
+(2, 2024, 'Objet Courrier Arrivée 2', '2024-02-16', 'Piece Jointe 2', NULL),
+(3, 2024, 'Objet Courrier Arrivée 3', '2024-02-17', 'Piece Jointe 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -64,8 +74,45 @@ CREATE TABLE IF NOT EXISTS `courrier_depart_ext` (
   `OBJET_DEPART_EXT` varchar(255) DEFAULT NULL,
   `DATE_DEPART_EXT` date DEFAULT NULL,
   `PIECE_JOINTE_DEPART_EXT` varchar(255) DEFAULT NULL,
+  `REPONSE` text,
   PRIMARY KEY (`N_DEPART_EXT`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `courrier_depart_ext`
+--
+
+INSERT INTO `courrier_depart_ext` (`N_DEPART_EXT`, `ANNEE`, `OBJET_DEPART_EXT`, `DATE_DEPART_EXT`, `PIECE_JOINTE_DEPART_EXT`, `REPONSE`) VALUES
+(1, 2024, 'Objet Courrier Départ Ext 1', '2024-02-15', 'Piece Jointe 1', NULL),
+(2, 2024, 'Objet Courrier Départ Ext 2', '2024-02-16', 'Piece Jointe 2', NULL),
+(3, 2024, 'Objet Courrier Départ Ext 3', '2024-02-17', 'Piece Jointe 3', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `courrier_depart_int`
+--
+
+DROP TABLE IF EXISTS `courrier_depart_int`;
+CREATE TABLE IF NOT EXISTS `courrier_depart_int` (
+  `N_DEPART_INT` int NOT NULL,
+  `ID_DEPARTEMENT` int DEFAULT NULL,
+  `ANNEE` int DEFAULT NULL,
+  `OBJET_DAPART_INT` varchar(255) DEFAULT NULL,
+  `DATE_DEPART_INT` date DEFAULT NULL,
+  `PIECE_JOINTE_DEPART_INT` varchar(255) DEFAULT NULL,
+  `REPONSE` text,
+  PRIMARY KEY (`N_DEPART_INT`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `courrier_depart_int`
+--
+
+INSERT INTO `courrier_depart_int` (`N_DEPART_INT`, `ID_DEPARTEMENT`, `ANNEE`, `OBJET_DAPART_INT`, `DATE_DEPART_INT`, `PIECE_JOINTE_DEPART_INT`, `REPONSE`) VALUES
+(1, 1, 2024, 'Objet Courrier Départ Int 1', '2024-02-15', 'Piece Jointe 1', NULL),
+(2, 1, 2024, 'Objet Courrier Départ Int 2', '2024-02-16', 'Piece Jointe 2', NULL),
+(3, 2, 2024, 'Objet Courrier Départ Int 3', '2024-02-17', 'Piece Jointe 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -77,8 +124,18 @@ DROP TABLE IF EXISTS `departement`;
 CREATE TABLE IF NOT EXISTS `departement` (
   `ID_DEPARTEMENT` int NOT NULL,
   `NOM_DEPARTEMENT` varchar(255) DEFAULT NULL,
+  `RESPONSABLE` text,
   PRIMARY KEY (`ID_DEPARTEMENT`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `departement`
+--
+
+INSERT INTO `departement` (`ID_DEPARTEMENT`, `NOM_DEPARTEMENT`, `RESPONSABLE`) VALUES
+(1, 'Département 1', NULL),
+(2, 'Département 2', NULL),
+(3, 'Département 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,8 +148,19 @@ CREATE TABLE IF NOT EXISTS `destinataire` (
   `ID_DES` int NOT NULL,
   `NOM_DES` varchar(255) DEFAULT NULL,
   `ADRESSE_DES` varchar(255) DEFAULT NULL,
+  `TEL_DES` text,
+  `FAX_DES` text,
   PRIMARY KEY (`ID_DES`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `destinataire`
+--
+
+INSERT INTO `destinataire` (`ID_DES`, `NOM_DES`, `ADRESSE_DES`, `TEL_DES`, `FAX_DES`) VALUES
+(1, 'Destinataire 1', 'Adresse Destinataire 1', NULL, NULL),
+(2, 'Destinataire 2', 'Adresse Destinataire 2', NULL, NULL),
+(3, 'Destinataire 3', 'Adresse Destinataire 3', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,8 +173,19 @@ CREATE TABLE IF NOT EXISTS `expediteur` (
   `ID_EXP` int NOT NULL,
   `NOM_EXP` varchar(255) DEFAULT NULL,
   `ADRESSE_EXP` varchar(255) DEFAULT NULL,
+  `TEL_EXP` text,
+  `FAX_EXP` text,
   PRIMARY KEY (`ID_EXP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `expediteur`
+--
+
+INSERT INTO `expediteur` (`ID_EXP`, `NOM_EXP`, `ADRESSE_EXP`, `TEL_EXP`, `FAX_EXP`) VALUES
+(1, 'Expéditeur 1', 'Adresse Expéditeur 1', NULL, NULL),
+(2, 'Expéditeur 2', 'Adresse Expéditeur 2', NULL, NULL),
+(3, 'Expéditeur 3', 'Adresse Expéditeur 3', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,9 +198,23 @@ CREATE TABLE IF NOT EXISTS `personnel` (
   `ID_PERSONNEL` int NOT NULL,
   `ID_DEPARTEMENT` int DEFAULT NULL,
   `NOM_PERSONNEL` varchar(255) DEFAULT NULL,
+  `ADRESSE_PERSONNEL` text,
+  `TEL_PERSONNEL` text,
+  `NOM_DEPARTEMENT` text,
   PRIMARY KEY (`ID_PERSONNEL`),
   KEY `ID_DEPARTEMENT` (`ID_DEPARTEMENT`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `personnel`
+--
+
+INSERT INTO `personnel` (`ID_PERSONNEL`, `ID_DEPARTEMENT`, `NOM_PERSONNEL`, `ADRESSE_PERSONNEL`, `TEL_PERSONNEL`, `NOM_DEPARTEMENT`) VALUES
+(1, 1, 'Personnel 1', NULL, NULL, NULL),
+(2, 1, 'Personnel 2', NULL, NULL, NULL),
+(3, 2, 'Personnel 3', NULL, NULL, NULL),
+(4, 2, 'Personnel 4', NULL, NULL, NULL),
+(5, 3, 'Personnel 5', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,6 +230,15 @@ CREATE TABLE IF NOT EXISTS `recevoir_interne` (
   KEY `ID_PERSONNEL` (`ID_PERSONNEL`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `recevoir_interne`
+--
+
+INSERT INTO `recevoir_interne` (`N_DEPART_INT`, `ID_PERSONNEL`) VALUES
+(1, 2),
+(2, 3),
+(3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +252,15 @@ CREATE TABLE IF NOT EXISTS `transmettre3` (
   KEY `N_DEPART_INT` (`N_DEPART_INT`),
   KEY `ID_PERSONNEL` (`ID_PERSONNEL`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `transmettre3`
+--
+
+INSERT INTO `transmettre3` (`N_DEPART_INT`, `ID_PERSONNEL`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -172,62 +283,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO `utilisateur` (`IDCOMPTE`, `NOMUTILISATEUR`, `MOTDEPASSE`, `TYPECOMPTE`) VALUES
 (1, 'tatsinkou', 'crispin', 'administrateur');
--- Insérer des données dans la table "departement"
-INSERT INTO `departement` (`ID_DEPARTEMENT`, `NOM_DEPARTEMENT`) VALUES
-(1, 'Département 1'),
-(2, 'Département 2'),
-(3, 'Département 3');
-
--- Insérer des données dans la table "personnel"
-INSERT INTO `personnel` (`ID_PERSONNEL`, `ID_DEPARTEMENT`, `NOM_PERSONNEL`) VALUES
-(1, 1, 'Personnel 1'),
-(2, 1, 'Personnel 2'),
-(3, 2, 'Personnel 3'),
-(4, 2, 'Personnel 4'),
-(5, 3, 'Personnel 5');
-
--- Insérer des données dans la table "destinataire"
-INSERT INTO `destinataire` (`ID_DES`, `NOM_DES`, `ADRESSE_DES`) VALUES
-(1, 'Destinataire 1', 'Adresse Destinataire 1'),
-(2, 'Destinataire 2', 'Adresse Destinataire 2'),
-(3, 'Destinataire 3', 'Adresse Destinataire 3');
-
--- Insérer des données dans la table "expediteur"
-INSERT INTO `expediteur` (`ID_EXP`, `NOM_EXP`, `ADRESSE_EXP`) VALUES
-(1, 'Expéditeur 1', 'Adresse Expéditeur 1'),
-(2, 'Expéditeur 2', 'Adresse Expéditeur 2'),
-(3, 'Expéditeur 3', 'Adresse Expéditeur 3');
-
--- Insérer des données dans la table "courrier_arrivee"
-INSERT INTO `courrier_arrivee` (`N_ARRIVEE`, `ANNEE`, `OBJET_ARRIVEE`, `DATE_ARRIVEE`, `PIECE_JOINTE_ARRIVEE`) VALUES
-(1, 2024, 'Objet Courrier Arrivée 1', '2024-02-15', 'Piece Jointe 1'),
-(2, 2024, 'Objet Courrier Arrivée 2', '2024-02-16', 'Piece Jointe 2'),
-(3, 2024, 'Objet Courrier Arrivée 3', '2024-02-17', 'Piece Jointe 3');
-
--- Insérer des données dans la table "courrier_depart_ext"
-INSERT INTO `courrier_depart_ext` (`N_DEPART_EXT`, `ANNEE`, `OBJET_DEPART_EXT`, `DATE_DEPART_EXT`, `PIECE_JOINTE_DEPART_EXT`) VALUES
-(1, 2024, 'Objet Courrier Départ Ext 1', '2024-02-15', 'Piece Jointe 1'),
-(2, 2024, 'Objet Courrier Départ Ext 2', '2024-02-16', 'Piece Jointe 2'),
-(3, 2024, 'Objet Courrier Départ Ext 3', '2024-02-17', 'Piece Jointe 3');
-
--- Insérer des données dans la table "courrier_depart_int"
-INSERT INTO `courrier_depart_int` (`N_DEPART_INT`, `ID_DEPARTEMENT`, `ANNEE`, `OBJET_DAPART_INT`, `DATE_DEPART_INT`, `PIECE_JOINTE_DEPART_INT`) VALUES
-(1, 1, 2024, 'Objet Courrier Départ Int 1', '2024-02-15', 'Piece Jointe 1'),
-(2, 1, 2024, 'Objet Courrier Départ Int 2', '2024-02-16', 'Piece Jointe 2'),
-(3, 2, 2024, 'Objet Courrier Départ Int 3', '2024-02-17', 'Piece Jointe 3');
-
--- Insérer des données dans la table "transmettre3"
-INSERT INTO `transmettre3` (`N_DEPART_INT`, `ID_PERSONNEL`) VALUES
-(1, 1),
-(2, 2),
-(3, 3);
-
--- Insérer des données dans la table "recevoir_interne"
-INSERT INTO `recevoir_interne` (`N_DEPART_INT`, `ID_PERSONNEL`) VALUES
-(1, 2),
-(2, 3),
-(3, 1);
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
