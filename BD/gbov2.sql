@@ -57,9 +57,9 @@ CREATE TABLE IF NOT EXISTS `courrier_arrivee` (
 --
 
 INSERT INTO `courrier_arrivee` (`N_ARRIVEE`, `ANNEE`, `OBJET_ARRIVEE`, `DATE_ARRIVEE`, `PIECE_JOINTE_ARRIVEE`, `REPONSE`) VALUES
-(1, 2024, 'Objet Courrier Arrivée 1', '2024-02-15', 'Piece Jointe 1', NULL),
-(2, 2024, 'Objet Courrier Arrivée 2', '2024-02-16', 'Piece Jointe 2', NULL),
-(3, 2024, 'Objet Courrier Arrivée 3', '2024-02-17', 'Piece Jointe 3', NULL);
+(1, 2024, 'Réception d un colis', '2024-02-15', 'Facture.pdf', 'En cours de traitement'),
+(2, 2024, 'Demande de devis', '2024-02-16', 'Contrat.pdf', 'En attente'),
+(3, 2024, 'Confirmation de rendez-vous', '2024-02-17', 'Planning.pdf', 'Traité');
 
 -- --------------------------------------------------------
 
@@ -83,9 +83,9 @@ CREATE TABLE IF NOT EXISTS `courrier_depart_ext` (
 --
 
 INSERT INTO `courrier_depart_ext` (`N_DEPART_EXT`, `ANNEE`, `OBJET_DEPART_EXT`, `DATE_DEPART_EXT`, `PIECE_JOINTE_DEPART_EXT`, `REPONSE`) VALUES
-(1, 2024, 'Objet Courrier Départ Ext 1', '2024-02-15', 'Piece Jointe 1', NULL),
-(2, 2024, 'Objet Courrier Départ Ext 2', '2024-02-16', 'Piece Jointe 2', NULL),
-(3, 2024, 'Objet Courrier Départ Ext 3', '2024-02-17', 'Piece Jointe 3', NULL);
+(1, 2024, 'Demande de partenariat', '2024-02-15', 'Proposition.pdf', 'En cours de traitement'),
+(2, 2024, 'Réponse à une offre', '2024-02-16', 'Contrat.pdf', 'Accepté'),
+(3, 2024, 'Invitation à un événement', '2024-02-17', 'Programme.pdf', 'En attente');
 
 -- --------------------------------------------------------
 
@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `courrier_depart_int` (
 --
 
 INSERT INTO `courrier_depart_int` (`N_DEPART_INT`, `ID_DEPARTEMENT`, `ANNEE`, `OBJET_DAPART_INT`, `DATE_DEPART_INT`, `PIECE_JOINTE_DEPART_INT`, `REPONSE`) VALUES
-(1, 1, 2024, 'Objet Courrier Départ Int 1', '2024-02-15', 'Piece Jointe 1', NULL),
-(2, 1, 2024, 'Objet Courrier Départ Int 2', '2024-02-16', 'Piece Jointe 2', NULL),
-(3, 2, 2024, 'Objet Courrier Départ Int 3', '2024-02-17', 'Piece Jointe 3', NULL);
+(1, 1, 2024, 'Demande de congé', '2024-02-15', 'Formulaire.pdf', 'En attente'),
+(2, 1, 2024, 'Rapport de réunion', '2024-02-16', 'Notes.pdf', 'Traité'),
+(3, 2, 2024, 'Plan marketing', '2024-02-17', 'Présentation.pdf', 'En cours de traitement');
 
 -- --------------------------------------------------------
 
@@ -133,10 +133,9 @@ CREATE TABLE IF NOT EXISTS `departement` (
 --
 
 INSERT INTO `departement` (`ID_DEPARTEMENT`, `NOM_DEPARTEMENT`, `RESPONSABLE`) VALUES
-(1, 'Département 1', NULL),
-(2, 'Département 2', NULL),
-(3, 'Département 3', NULL);
-
+(1, 'Ressources Humaines', 'John Doe'),
+(2, 'Marketing', 'Jane Smith'),
+(3, 'Finance', 'Alice Johnson');
 -- --------------------------------------------------------
 
 --
@@ -158,9 +157,10 @@ CREATE TABLE IF NOT EXISTS `destinataire` (
 --
 
 INSERT INTO `destinataire` (`ID_DES`, `NOM_DES`, `ADRESSE_DES`, `TEL_DES`, `FAX_DES`) VALUES
-(1, 'Destinataire 1', 'Adresse Destinataire 1', NULL, NULL),
-(2, 'Destinataire 2', 'Adresse Destinataire 2', NULL, NULL),
-(3, 'Destinataire 3', 'Adresse Destinataire 3', NULL, NULL);
+(1, 'Mairie de Ville 1', '1 Rue de la Mairie, 75001 Ville 1', '01 23 45 67 89', '01 23 45 67 88'),
+(2, 'Entreprise A', '123 Rue de l Entreprise, 75002 Ville 2', '01 23 45 67 90', '01 23 45 67 91'),
+(3, 'Organisation B', '456 Avenue de l Organisation, 75003 Ville 3', '01 23 45 67 92', '01 23 45 67 93');
+
 
 -- --------------------------------------------------------
 
@@ -183,9 +183,10 @@ CREATE TABLE IF NOT EXISTS `expediteur` (
 --
 
 INSERT INTO `expediteur` (`ID_EXP`, `NOM_EXP`, `ADRESSE_EXP`, `TEL_EXP`, `FAX_EXP`) VALUES
-(1, 'Expéditeur 1', 'Adresse Expéditeur 1', NULL, NULL),
-(2, 'Expéditeur 2', 'Adresse Expéditeur 2', NULL, NULL),
-(3, 'Expéditeur 3', 'Adresse Expéditeur 3', NULL, NULL);
+(1, 'Société XYZ', '789 Boulevard de la Société, 75004 Ville 4', '01 23 45 67 94', '01 23 45 67 95'),
+(2, 'Association C', '101 Rue de l Association, 75005 Ville 5', '01 23 45 67 96', '01 23 45 67 97'),
+(3, 'Particulier D', '111 Avenue du Particulier, 75006 Ville 6', '01 23 45 67 98', '01 23 45 67 99');
+
 
 -- --------------------------------------------------------
 
@@ -210,11 +211,12 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 --
 
 INSERT INTO `personnel` (`ID_PERSONNEL`, `ID_DEPARTEMENT`, `NOM_PERSONNEL`, `ADRESSE_PERSONNEL`, `TEL_PERSONNEL`, `NOM_DEPARTEMENT`) VALUES
-(1, 1, 'Personnel 1', NULL, NULL, NULL),
-(2, 1, 'Personnel 2', NULL, NULL, NULL),
-(3, 2, 'Personnel 3', NULL, NULL, NULL),
-(4, 2, 'Personnel 4', NULL, NULL, NULL),
-(5, 3, 'Personnel 5', NULL, NULL, NULL);
+(1, 1, 'Jean Dupont', '2 Rue Jean Dupont, 75007 Ville 7', '01 23 45 67 00', 'Département Administratif'),
+(2, 1, 'Marie Martin', '3 Rue Marie Martin, 75008 Ville 8', '01 23 45 67 01', 'Département Administratif'),
+(3, 2, 'Paul Dubois', '4 Rue Paul Dubois, 75009 Ville 9', '01 23 45 67 02', 'Département Technique'),
+(4, 2, 'Sophie Durand', '5 Rue Sophie Durand, 75010 Ville 10', '01 23 45 67 03', 'Département Technique'),
+(5, 3, 'Pierre Moreau', '6 Rue Pierre Moreau, 75011 Ville 11', '01 23 45 67 04', 'Département Commercial');
+
 
 -- --------------------------------------------------------
 
