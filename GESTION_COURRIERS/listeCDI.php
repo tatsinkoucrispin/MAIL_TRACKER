@@ -123,11 +123,18 @@
                                                 </tr>
                                             </thead>
                                             <?php
-                                                $sql = "SELECT c.N_DEPART_INT,c.ANNEE,c.OBJET_DAPART_INT,c.DATE_DEPART_INT,c.PIECE_JOINTE_DEPART_INT,d.nom_departement,p.nom_personnel,
-                                                (SELECT nom_personnel from personnel WHERE id_personnel = r.ID_PERSONNEL) AS NOM_PERSONNEL_RECEPTEUR,
-                                                (SELECT nom_departement FROM departement d JOIN personnel p on d.ID_DEPARTEMENT=p.ID_DEPARTEMENT WHERE
-                                                NOM_PERSONNEL=NOM_PERSONNEL_RECEPTEUR) AS NOM_DEPARTEMENT_RECEPTEUR from courrier_depart_int c JOIN departement d ON d.ID_DEPARTEMENT=c.ID_DEPARTEMENT join
-                                                transmettre3 t on t.N_DEPART_INT=c.N_DEPART_INT JOIN personnel p ON p.ID_PERSONNEL=t.ID_PERSONNEL JOIN recevoir_interne r on r.N_DEPART_INT=c.N_DEPART_INT";
+                                                $sql = "SELECT c.N_DEPART_INT, c.ANNEE, 
+												c.OBJET_DAPART_INT, c.DATE_DEPART_INT, 
+												c.PIECE_JOINTE_DEPART_INT, d.NOM_DEPARTEMENT, 
+												p.NOM_PERSONNEL, 
+												(SELECT NOM_PERSONNEL FROM personnel WHERE ID_PERSONNEL = r.ID_PERSONNEL) AS NOM_PERSONNEL_RECEPTEUR, 
+												(SELECT d.NOM_DEPARTEMENT FROM departement d2 JOIN personnel p2 ON d2.ID_DEPARTEMENT = p2.ID_DEPARTEMENT
+												 WHERE p2.NOM_PERSONNEL = NOM_PERSONNEL_RECEPTEUR) 
+												 AS NOM_DEPARTEMENT_RECEPTEUR FROM courrier_depart_int c 
+												 JOIN departement d ON d.ID_DEPARTEMENT = c.ID_DEPARTEMENT 
+												 JOIN transmettre3 t ON t.N_DEPART_INT = c.N_DEPART_INT 
+												 JOIN personnel p ON p.ID_PERSONNEL = t.ID_PERSONNEL 
+												 JOIN recevoir_interne r ON r.N_DEPART_INT = c.N_DEPART_INT";
                                                 $query = $conn->prepare($sql);
                                                 $query->execute();
                                                 $row=$query->fetchAll(PDO::FETCH_ASSOC);
@@ -137,8 +144,8 @@
                                                 <td><?php echo $value['N_DEPART_INT']."/".$value['ANNEE']?></td>
                                                 <td><?php echo $value['OBJET_DAPART_INT']?></td>
                                                 <td><?php echo $value['DATE_DEPART_INT']?></td>
-                                                <td><?php echo $value['nom_departement']?></td>
-                                                <td><?php echo $value['nom_personnel']?></td>
+                                                <td><?php echo $value['NOM_DEPARTEMENT']?></td>
+                                                <td><?php echo $value['NOM_PERSONNEL']?></td>
                                                 <td><?php echo $value['NOM_DEPARTEMENT_RECEPTEUR']?></td>
                                                 <td><?php echo $value['NOM_PERSONNEL_RECEPTEUR']?></td>
                                                 <td><a href="pj/CDI/<?php echo $value['PIECE_JOINTE_DEPART_INT']?>"><?php echo $value['PIECE_JOINTE_DEPART_INT']?></a></td>

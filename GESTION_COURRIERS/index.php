@@ -3,7 +3,7 @@
   include "connexion/config.php";
   if(isset($_POST['submit'])){
     $username = filter_var(htmlentities($_POST['user']),FILTER_SANITIZE_STRING);
-    $password = filter_var(htmlentities(md5($_POST['mdps']),FILTER_SANITIZE_STRING));
+    $password = filter_var(htmlentities($_POST['mdps']),FILTER_SANITIZE_STRING);
 
     $loginsql = "SELECT * FROM utilisateur WHERE NOMUTILISATEUR = :user  AND MOTDEPASSE = :mdps";
     $query = $conn->prepare($loginsql);

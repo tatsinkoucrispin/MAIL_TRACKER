@@ -1,6 +1,7 @@
 <?php
     include "connexion/config.php";
     include "connexion/cn.php";
+	include "table.php";
 
 ?>
 <!DOCTYPE html>

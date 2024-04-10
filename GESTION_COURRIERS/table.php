@@ -175,10 +175,7 @@ if(isset($_POST['filtrerCA'])){
                 text-decoration: none;
             }
             </style>";
-
         $pdf->WriteHTMLCell(192,0,9,'',$html,0);
-
-
         $pdf->Output();
 
 }

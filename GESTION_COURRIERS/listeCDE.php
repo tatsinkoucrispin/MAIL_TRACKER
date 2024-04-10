@@ -127,7 +127,7 @@
                                             </thead>
                                             <?php
                                                 $sql = "SELECT N_DEPART_EXT,c.ID_DES,ANNEE,OBJET_DEPART_EXT,DATE_DEPART_EXT,PIECE_JOINTE_DEPART_EXT,NOM_DES,
-                                                ADRESSE_DES,NOM_DEPARTEMENT,NOM_PERSONNEL from courrier_depart_ext c join destinataire ds on
+                                                ADRESSE_DES,d.NOM_DEPARTEMENT,NOM_PERSONNEL from courrier_depart_ext c join destinataire ds on
                                                 c.ID_DES=ds.ID_DES join departement d on d.ID_DEPARTEMENT=c.ID_DEPARTEMENT join personnel p on
                                                 p.ID_DEPARTEMENT=d.ID_DEPARTEMENT";
                                                 $query = $conn->prepare($sql);

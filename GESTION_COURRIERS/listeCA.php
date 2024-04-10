@@ -1,4 +1,7 @@
 <?php
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+
     include "connexion/config.php";
     include "connexion/cn.php";
 
@@ -21,7 +24,6 @@
 		$csql4 = "DELETE FROM expediteur WHERE ID_EXP='$idExp'";
         $query4 = $conn->prepare($csql4);
         $query4->execute();
-        
         
         header('location:listeCA.php');
         };
@@ -84,20 +86,15 @@
 			<li><a href="gestionU.php"><i class='bx bxs-user-pin icon' ></i>Gestion des utilisateurs</a></li>
 			<?php }?>
 			<li><a href="settings.php"><i class='bx bx-cog icon'></i>Paramètres</a></li>
-			<li><a href="deconn.php"><i class='bx bx-log-out icon' ></i> Déconnexion</a></li>
-			
-			
-			
+			<li><a href="deconn.php"><i class='bx bx-log-out icon' ></i> Déconnexion</a></li>		
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
-
 	<!-- NAVBAR -->
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu toggle-sidebar' ></i>
-
 			<span class="divider"></span>
 		</nav>
 		<!-- NAVBAR -->
@@ -111,9 +108,6 @@
 							<div class="cardHeader">
 								<h3>Mise à jour des courriers arrivées</h3>
 							</div>
-		
-							
-                                
 							</div class="table-responsive">
                                     <table id="example" class="table table-striped">
                                             <thead class="thead-dark">
@@ -131,9 +125,15 @@
                                                 </tr>
                                             </thead>
                                             <?php
-                                                $sql = "SELECT c.N_ARRIVEE,ANNEE,OBJET_ARRIVEE,DATE_ARRIVEE,PIECE_JOINTE_ARRIVEE,c.ID_EXP,NOM_EXP,ADRESSE_EXP,NOM_DEPARTEMENT,NOM_PERSONNEL
-                                                from courrier_arrivee c join expediteur e on c.ID_EXP=e.ID_EXP join affecter a on a.N_ARRIVEE=c.N_ARRIVEE JOIN
-                                                departement d on d.ID_DEPARTEMENT=a.ID_DEPARTEMENT JOIN personnel p on p.ID_DEPARTEMENT=d.ID_DEPARTEMENT ORDER BY `DATE_ARRIVEE` DESC";
+                                                $sql = "SELECT c.N_ARRIVEE, ANNEE, OBJET_ARRIVEE, 
+												DATE_ARRIVEE, NOM_EXP, ADRESSE_EXP, d.NOM_DEPARTEMENT, 
+												NOM_PERSONNEL, PIECE_JOINTE_ARRIVEE, c.ID_EXP
+												FROM courrier_arrivee c 
+												JOIN expediteur e ON  e.ID_EXP = c.ID_EXP  
+												JOIN affecter a ON    a.N_ARRIVEE = c.N_ARRIVEE
+												JOIN departement d ON d.ID_DEPARTEMENT = a.ID_DEPARTEMENT
+												JOIN personnel p ON  p.ID_DEPARTEMENT = d.ID_DEPARTEMENT
+												ORDER BY DATE_ARRIVEE DESC";										
                                                 $query = $conn->prepare($sql);
                                                 $query->execute();
                                                 $row=$query->fetchAll(PDO::FETCH_ASSOC);
@@ -153,7 +153,7 @@
                                                     <a href="modifierCA.php?modifier=<?php echo $value['N_ARRIVEE'];?>&val=<?php echo $value['ID_EXP'];?>"><button type="button" class="btn"><i class='bx bxs-edit'></i></button></a>
                                                     <a href="listeCA.php?supprimer=<?php echo $value['N_ARRIVEE'];?>&val=<?php echo $value['ID_EXP'];?>"><button type="button" class="btn"><i class='bx bxs-trash'></i></button></a>
                                                 </td>
-                                        
+                
                                             </tr>
                                         <?php }?>
                                         </table>
@@ -161,10 +161,8 @@
                             </div>
 						</div>
 		
-						<!-- ================= New Customers ================ -->
-					  
+						<!-- ================= New Customers ================ -->					  
 					</div>
-
 				</div>
 			</div>
 		</main>
