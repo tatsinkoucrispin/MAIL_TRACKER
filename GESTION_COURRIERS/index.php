@@ -48,10 +48,10 @@
     <div class="login-clean">
         <form method="post" action="">
             <h2 class="sr-only"></h2>
-            <div class="illustration"><img src="image/logo.png"alt=""></div>
+            <div class="illustration"><img src="image/Mail.jpg"alt=""></div>
             <div class="form-group"><input class="form-control" type="text" name="user" placeholder="Nom d'utilisateur"></div>
             <div class="form-group"><input class="form-control" type="password" name="mdps" placeholder="Mot de passe"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" name="submit" type="submit">Se Connecter</button></div></form>
+            <div class="form-group"><button class="btn btn-outline-primary btn-block" name="submit" type="submit">Se Connecter</button></div></form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

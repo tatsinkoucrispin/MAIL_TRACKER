@@ -59,7 +59,7 @@
 	
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand"><img src="image/logo.png" width="55" height="55" style="margin-top:20px;"><span>Gestion de Bureau d'Ordre</span></a>
+		<a href="#" class="brand"><img src="image/Mail.jpg" width="55" height="55" style="margin-top:20px;"><span>Mail Tracker</span></a>
 		<ul class="side-menu">
 			<li><a href="pageAcc.php" class="active"><i class='bx bxs-dashboard icon' ></i>Page d'accueil</a></li>
 			

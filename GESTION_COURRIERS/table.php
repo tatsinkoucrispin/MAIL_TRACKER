@@ -283,10 +283,10 @@ if(isset($_POST['filtrerCD'])){
             $pdf->SetFont('Times','',12);
 
             // GFG logo image
-            $pdf->Image('image/logo.png', 10, 8, 20);
+            $pdf->Image('image/Mail.jpg', 10, 8, 20);
             
             // GFG logo image
-            $pdf->Image('image/logo.png', 270, 8, 20);
+            $pdf->Image('image/Mail.jpg', 270, 8, 20);
             
             // Set font-family and font-size
             $pdf->SetFont('Times','B',20);
